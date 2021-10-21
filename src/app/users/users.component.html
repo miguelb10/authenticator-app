@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Users</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Listado de usuarios</h5>
+      <div class="my-2 text-left">
+        <button *ngIf="authenticationService.isUserSession()" class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/users/form']">
+          Crear Usuario
+        </button>
+      </div>
+      <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Username</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let user of users">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.firstname }}</td>
+                  <td>{{ user.lastname }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.username }}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>

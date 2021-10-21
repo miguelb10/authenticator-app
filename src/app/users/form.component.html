@@ -1,0 +1,67 @@
+<ul class="alert alert-danger" *ngIf="errors?.length > 0">
+  <li *ngFor="let err of errors">
+      {{ err }}
+  </li>
+</ul>
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ title }}</div>
+  <div class="card-body">
+      <form #userForm="ngForm">
+          <div class="form-group row">
+              <label for="firstname" class="col-form-label col-sm-2">Nombre</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-contol" [(ngModel)]="user.firstname" name="firstname" #firstname="ngModel"><!--required minlength="4" -->
+                  <div class="alert alert-danger" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                      <div *ngIf="firstname.errors.required">
+                          Nombre es requerido
+                      </div>
+                      <div *ngIf="firstname.errors.minlength">
+                          Nombre debe tener al menos 4 caracteres
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="lastname" class="col-form-label col-sm-2">Apellido</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-contol" [(ngModel)]="user.lastname" name="lastname" #lastname="ngModel"><!--required-->
+                  <div class="alert alert-danger" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                      <div *ngIf="lastname.errors.required">
+                          Apellido es requerido
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="username" class="col-form-label col-sm-2">Username</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-contol" [(ngModel)]="user.username" name="username" #username="ngModel"><!--required-->
+                  <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                      <div *ngIf="username.errors.required">
+                        El username es requerido
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="email" class="col-form-label col-sm-2">Email</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-contol" [(ngModel)]="user.email" name="email" #email="ngModel"><!--required email-->
+                  <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                      <div *ngIf="email.errors.required">
+                          Email es requerido
+                      </div>
+                      <div *ngIf="email.errors.email">
+                          Email debe tener un formato válido
+                      </div>
+                  </div>
+              </div>
+          </div>  
+          <div class="form-group row">
+              <div class="col-sm-6">
+                  <button class="btn btn-primary" role="button" (click)='create()' [disabled]="!userForm.form.valid">Crear</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
